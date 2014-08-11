@@ -1,0 +1,13 @@
+---
+channels:
+    stable: 3.6.4
+    alpha: 4.0a1
+versions:
+    3.6.4:
+        platform_version: 24.6.0
+        details_url: https://www.torproject.org/projects/torbrowser.html.en
+        download_url: https://www.torproject.org/dist/torbrowser/3.6.4
+    4.0a1:
+        platform_version: 24.6.0
+        details_url: https://www.torproject.org/projects/torbrowser.html.en
+        download_url: https://www.torproject.org/dist/torbrowser/4.0a1
