@@ -22,6 +22,7 @@ sub build_target_by_os {
 
 sub write_htdocs {
     my ($file, $content) = @_;
+    mkdir $htdocsdir unless -d $htdocsdir;
     write_file("$htdocsdir/$file", $content);
     $htdocsfiles{$file} = 1;
 }
