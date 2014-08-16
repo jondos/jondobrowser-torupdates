@@ -16,6 +16,10 @@ sub exit_error {
     exit (exists $_[1] ? $_[1] : 1);
 }
 
+sub build_target_by_os {
+    $config->{build_targets}{$_[0]} ? $config->{build_targets}{$_[0]} : $_[0];
+}
+
 sub write_htdocs {
     my ($file, $content) = @_;
     write_file("$htdocsdir/$file", $content);
@@ -116,15 +120,16 @@ sub write_htaccess {
         my $version = $config->{channels}{$channel};
         my $files = $config->{versions}{$version}{files};
         foreach my $os (keys %$files) {
+            my $bt = build_target_by_os($os);
             foreach my $lang (keys %{$files->{$os}}) {
                 foreach my $from_version (keys %{$files->{$os}{$lang}{partial}}) {
-                    $htaccess .= "RewriteRule ^$channel/$os/$from_version/$lang "
+                    $htaccess .= "RewriteRule ^$channel/$bt/$from_version/$lang "
                               .  "$from_version-$version-$os-$lang.xml $flags\n";
                 }
-                $htaccess .= "RewriteRule ^$channel/$os/[^\/]+/$lang "
+                $htaccess .= "RewriteRule ^$channel/$bt/[^\/]+/$lang "
                           .  "$version-$os-$lang.xml $flags\n";
             }
-            $htaccess .= "RewriteRule ^$channel/$os "
+            $htaccess .= "RewriteRule ^$channel/$bt "
                       .  "$version-$os-en-US.xml $flags\n";
         }
     }

@@ -1,4 +1,9 @@
 ---
+build_targets:
+    linux32: Linux_x86-gcc3
+    linux64: Linux_x86_64-gcc3
+    win32: WINNT_x86-gcc3
+    osx32: Darwin_x86-gcc3
 channels:
     stable: 3.6.4
     alpha: 4.0a1
