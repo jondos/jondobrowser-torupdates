@@ -9,7 +9,7 @@ use XML::Writer;
 
 my $htdocsdir = "$FindBin::Bin/htdocs";
 my $config = LoadFile("$FindBin::Bin/config.yml");
-my %htdocsfiles = ( '.' => 1, '..' => 1 );
+my %htdocsfiles = ( '.' => 1, '..' => 1, 'no-update.xml' => 1 );
 
 sub exit_error {
     print STDERR "Error: ", $_[0], "\n";
@@ -120,6 +120,9 @@ sub write_htaccess {
     foreach my $channel (keys %{$config->{channels}}) {
         my $version = $config->{channels}{$channel};
         my $files = $config->{versions}{$version}{files};
+        $htaccess .= "RewriteRule "
+                  .  "^$channel/[^\/]+/[^\/]+/$version/ "
+                  .  "no-update.xml $flags\n";
         foreach my $os (keys %$files) {
             my $bt = build_target_by_os($os);
             foreach my $lang (keys %{$files->{$os}}) {
