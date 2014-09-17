@@ -81,6 +81,7 @@ sub get_response {
     my $writer = XML::Writer->new(OUTPUT => \$res, ENCODING => 'UTF-8');
     $writer->xmlDecl;
     $writer->startTag('updates');
+    my $minversion = get_config($config, $version, $os, 'minSupportedOSVersion');
     $writer->startTag('update',
         type => 'minor',
         displayVersion => $version,
@@ -88,6 +89,7 @@ sub get_response {
         platformVersion => get_config($config, $version, $os, 'platformVersion'),
         buildID => '20000101000000',
         detailsURL => get_config($config, $version, $os, 'detailsURL'),
+        defined $minversion ? ( minSupportedOSVersion => $minversion ) : (),
     );
     foreach my $patch (@patches) {
         $writer->startTag('patch', %$patch);
