@@ -18,3 +18,4 @@ versions:
         download_url: https://www.torproject.org/dist/torbrowser/4.0a1
 #       osx32:
 #          minSupportedOSVersion: 10.7
+#          unsupported: 1

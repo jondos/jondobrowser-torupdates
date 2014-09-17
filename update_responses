@@ -81,6 +81,13 @@ sub get_response {
     my $writer = XML::Writer->new(OUTPUT => \$res, ENCODING => 'UTF-8');
     $writer->xmlDecl;
     $writer->startTag('updates');
+    if (get_config($config, $version, $os, 'unsupported')) {
+        $writer->startTag('update',
+            unsupported => 'true',
+            detailsURL => get_config($config, $version, $os, 'detailsURL'),
+        );
+        goto CLOSETAGS;
+    }
     my $minversion = get_config($config, $version, $os, 'minSupportedOSVersion');
     $writer->startTag('update',
         type => 'minor',
@@ -95,6 +102,7 @@ sub get_response {
         $writer->startTag('patch', %$patch);
         $writer->endTag('patch');
     }
+    CLOSETAGS:
     $writer->endTag('update');
     $writer->endTag('updates');
     $writer->end;
