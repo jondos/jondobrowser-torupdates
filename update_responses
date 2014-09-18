@@ -144,11 +144,10 @@ sub write_htaccess {
             my $bt = build_target_by_os($os);
             foreach my $lang (keys %{$files->{$os}}) {
                 foreach my $from_version (keys %{$files->{$os}{$lang}{partial}}) {
-                    $htaccess .= "RewriteRule "
-                              .  "^$channel/$bt/[^\/]+/$from_version/$lang "
+                    $htaccess .= "RewriteRule ^$channel/$bt/$from_version/$lang "
                               .  "$from_version-$version-$os-$lang.xml $flags\n";
                 }
-                $htaccess .= "RewriteRule ^$channel/$bt/[^\/]+/[^\/]+/$lang "
+                $htaccess .= "RewriteRule ^$channel/$bt/[^\/]+/$lang "
                           .  "$version-$os-$lang.xml $flags\n";
             }
             $htaccess .= "RewriteRule ^$channel/$bt "
