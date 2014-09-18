@@ -5,13 +5,8 @@ build_targets:
     win32: WINNT_x86-gcc3
     osx32: Darwin_x86-gcc3
 channels:
-    stable: 3.6.4
     alpha: 4.0-alpha-3
 versions:
-    3.6.4:
-        platformVersion: 24.6.0
-        detailsURL: https://www.torproject.org/projects/torbrowser.html.en
-        download_url: https://www.torproject.org/dist/torbrowser/3.6.4
     4.0-alpha-3:
         platformVersion: 24.8.0
         detailsURL: https://www.torproject.org/projects/torbrowser.html.en
