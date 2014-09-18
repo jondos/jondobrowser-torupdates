@@ -6,16 +6,16 @@ build_targets:
     osx32: Darwin_x86-gcc3
 channels:
     stable: 3.6.4
-    alpha: 4.0a1
+    alpha: 4.0-alpha-3
 versions:
     3.6.4:
         platformVersion: 24.6.0
         detailsURL: https://www.torproject.org/projects/torbrowser.html.en
         download_url: https://www.torproject.org/dist/torbrowser/3.6.4
-    4.0a1:
-        platformVersion: 24.6.0
+    4.0-alpha-3:
+        platformVersion: 24.8.0
         detailsURL: https://www.torproject.org/projects/torbrowser.html.en
-        download_url: https://www.torproject.org/dist/torbrowser/4.0a1
+        download_url: https://www.torproject.org/dist/torbrowser/4.0-alpha-3
 #       osx32:
 #          minSupportedOSVersion: 10.7
 #          unsupported: 1
