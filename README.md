@@ -8,6 +8,27 @@ See ticket [#12622](https://trac.torproject.org/projects/tor/ticket/12622)
 for details.
 
 
+Dependencies
+------------
+
+The following perl modules need to be installed to run the script:
+  FindBin YAML File::Slurp Digest::SHA XML::Writer
+
+On Debian / Ubuntu you can install them with:
+
+```
+  # apt-get install libfindbin-libs-perl libyaml-perl libfile-slurp-perl \
+                    libdigest-sha-perl libxml-writer-perl
+```
+
+On Red Hat / Fedora you can install them with:
+
+```
+  # for module in FindBin YAML File::Slurp Digest::SHA XML::Writer
+    do yum install "perl($module)"; done
+```
+
+
 URL Format
 ----------
 
