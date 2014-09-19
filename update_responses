@@ -138,7 +138,7 @@ sub write_htaccess {
         my $version = $config->{channels}{$channel};
         my $files = $config->{versions}{$version}{files};
         $htaccess .= "RewriteRule "
-                  .  "^$channel/[^\/]+/[^\/]+/$version/ "
+                  .  "^$channel/[^\/]+/$version/ "
                   .  "no-update.xml $flags\n";
         foreach my $os (keys %$files) {
             my $bt = build_target_by_os($os);
