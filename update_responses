@@ -4,7 +4,7 @@ use strict;
 use FindBin;
 use YAML qw(LoadFile);
 use File::Slurp;
-use Digest::SHA qw(sha512_hex);
+use Digest::SHA;
 use XML::Writer;
 
 my $htdocsdir = "$FindBin::Bin/htdocs";
@@ -34,6 +34,13 @@ sub clean_htdocs {
     unlink map { "$htdocsdir/$_" } @files;
 }
 
+sub get_sha512_hex_of_file {
+    my ($file) = @_;
+    my $sha = Digest::SHA->new("512");
+    $sha->addfile($file);
+    return $sha->hexdigest;
+}
+
 sub get_version_files {
     my ($config, $version) = @_;
     return if $config->{versions}{$version}{files};
@@ -49,7 +56,7 @@ sub get_version_files {
                 URL => "$config->{versions}{$version}{download_url}/$file",
                 size => -s "$vdir/$file",
                 hashFunction => 'SHA512',
-                hashValue => sha512_hex("$vdir/$file"),
+                hashValue => get_sha512_hex_of_file("$vdir/$file"),
             };
             next;
         }
@@ -60,7 +67,7 @@ sub get_version_files {
                 URL => "$config->{versions}{$version}{download_url}/$file",
                 size => -s "$vdir/$file",
                 hashFunction => 'SHA512',
-                hashValue => sha512_hex("$vdir/$file"),
+                hashValue => get_sha512_hex_of_file("$vdir/$file"),
             }
         }
     }
