@@ -10,6 +10,8 @@ use XML::Writer;
 my $htdocsdir = "$FindBin::Bin/htdocs";
 my $config = LoadFile("$FindBin::Bin/config.yml");
 my %htdocsfiles = ( '.' => 1, '..' => 1, 'no-update.xml' => 1 );
+my $vdir = $config->{releases_dir};
+$vdir = "$FindBin::Bin/$releases_dir" unless $vdir =~ m/^\//;
 
 sub exit_error {
     print STDERR "Error: ", $_[0], "\n";
@@ -45,7 +47,7 @@ sub get_version_files {
     my ($config, $version) = @_;
     return if $config->{versions}{$version}{files};
     my $files = {};
-    my $vdir = "$FindBin::Bin/releases/$version";
+    #my $vdir = "$FindBin::Bin/releases/$version";
     opendir(my $d, $vdir) or exit_error "Error opening directory $vdir";
     foreach my $file (readdir $d) {
         next unless -f "$vdir/$file";
