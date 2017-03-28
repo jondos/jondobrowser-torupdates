@@ -1,13 +1,6 @@
 Tor Browser Update Responses script
 ===================================
 
-This repository contains a script to generate responses for Tor Browser
-updater.
-
-See ticket [#12622](https://trac.torproject.org/projects/tor/ticket/12622)
-for details.
-
-
 Dependencies
 ------------
 
@@ -21,12 +14,38 @@ On Debian / Ubuntu you can install them with:
                     libdigest-sha-perl libxml-writer-perl
 ```
 
-On Red Hat / Fedora you can install them with:
+Install Apache2
 
-```
-  # for module in FindBin YAML File::Slurp Digest::SHA XML::Writer
-    do yum install "perl($module)"; done
-```
+ $ apt-get install apache2
+
+Enable mod rewrite
+
+edit the file /etc/apache2/apache2.conf and modify the below
+
+  Change AllowOverride None to AllowOverride All on the <Directory /var/www/> section like below
+
+  <Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+  </Directory>
+
+$ cd /var/www
+
+git clone  https://github.com/lancerajee/torupdates
+
+edit the file /etc/apache2/sites-available/000-default.conf  to change default directory of Apache
+/var/www/torupdates/htdocs
+
+service apache2  restart
+
+cd htdocs
+mkdir torbrowser
+
+#place your final files in this folder
+cp -R /var/src/tor-browser-build/alpha/unsigned/6.5n/ torbrowser/
+
+$ ./update_responses
 
 
 URL Format
