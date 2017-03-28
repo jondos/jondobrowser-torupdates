@@ -40,8 +40,14 @@ $ cd /var/www
 $ git clone  https://github.com/lancerajee/torupdates
 ```
 
-edit the file /etc/apache2/sites-available/000-default.conf  to change default directory of Apache
+Edit the file /etc/apache2/sites-available/000-default.conf  to change default directory of Apache
 /var/www/torupdates/htdocs
+
+```
+ DocumentRoot /var/www/torupdates/htdocs
+```
+
+Restart Apache
 ```
 $ service apache2  restart
 ```
