@@ -5,22 +5,31 @@ build_targets:
     win32: WINNT_x86-gcc3
     osx32: Darwin_x86-gcc3
 channels:
+    #Alpha Folder Name
     alpha: 6.5n
+    #Nightly Folder Name
     nightly: 6.4n
+    #Release Folder Name
     release: 6.3n
 versions:
     6.5n:
         platformVersion: 45.8.0
+        #URL of the Updates Page
         detailsURL: https://yoursite/projects/torbrowser.html.en
+        #Location of the FileDownload
         download_url: https://yoursite/dist/torbrowser/alpha/6-5n
     
     6.4n:
         platformVersion: 45.8.0
+        #URL of the Updates Page
         detailsURL: https://yoursite/projects/torbrowser.html.en
+        #Location of the FileDownload
         download_url: https://yoursite/dist/torbrowser/nightly/6-5n
     
     6.3n:
         platformVersion: 45.8.0
+        #URL of the Updates Page
         detailsURL: https://yoursite/projects/torbrowser.html.en
+        #Location of the FileDownload
         download_url: https://yoursite/dist/torbrowser/release/6-5n
 
