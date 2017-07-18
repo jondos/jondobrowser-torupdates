@@ -88,7 +88,7 @@ sub get_version_files {
     opendir(my $d, $vdir) or exit_error "Error opening directory $vdir";
     foreach my $file (readdir $d) {
         next unless -f "$vdir/$file";
-        if ($file =~ m/^tor-browser-([^-]+)-${version}_(.+)\.mar$/) {
+        if ($file =~ m/^jondobrowser-([^-]+)-${version}_(.+)\.mar$/) {
             my ($os, $lang) = ($1, $2);
             $files->{$os}{$lang}{complete} = {
                 type => 'complete',
@@ -99,7 +99,7 @@ sub get_version_files {
             };
             next;
         }
-        if ($file =~ m/^tor-browser-([^-]+)-(.+)-${version}_(.+)\.incremental\.mar$/) {
+        if ($file =~ m/^jondobrowser-([^-]+)-(.+)-${version}_(.+)\.incremental\.mar$/) {
             my ($os, $from_version, $lang) = ($1, $2, $3);
             $files->{$os}{$lang}{partial}{$from_version} = {
                 type => 'partial',
@@ -123,11 +123,11 @@ sub get_version_downloads {
     foreach my $file (readdir $d) {
         next unless -f "$vdir/$file";
         my ($os, $lang);
-        if ($file =~ m/^TorBrowser-$version-osx64_(.+).dmg$/) {
+        if ($file =~ m/^JonDoBrowser-$version-osx64_(.+).dmg$/) {
             ($os, $lang) = ('osx64', $1);
-        } elsif ($file =~ m/^tor-browser-(linux32|linux64)-${version}_(.+).tar.xz$/) {
+        } elsif ($file =~ m/^jondobrowser-(linux32|linux64)-${version}_(.+).tar.xz$/) {
             ($os, $lang) = ($1, $2);
-        } elsif ($file =~ m/^torbrowser-install-${version}_(.+).exe$/) {
+        } elsif ($file =~ m/^jondobrowser-install-${version}_(.+).exe$/) {
             ($os, $lang) = ('win32', $1);
         } else {
             next;
@@ -169,12 +169,12 @@ sub extract_mar {
 
 sub mar_filename {
     my ($version, $os, $lang) = @_;
-    "$releases_dir/$version/tor-browser-$os-${version}_$lang.mar";
+    "$releases_dir/$version/jondobrowser-$os-${version}_$lang.mar";
 }
 
 sub create_incremental_mar {
     my ($config, $pm, $from_version, $new_version, $os, $lang) = @_;
-    my $mar_file = "tor-browser-$os-${from_version}-${new_version}_$lang.incremental.mar";
+    my $mar_file = "jondobrowser-$os-${from_version}-${new_version}_$lang.incremental.mar";
     print "Starting $mar_file\n";
     my $mar_file_path = "$releases_dir/$new_version/$mar_file";
     my $download_url = "$config->{download}{mars_url}/$new_version";

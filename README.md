@@ -53,13 +53,13 @@ $ service apache2  restart
 ```
 ```
 cd htdocs
-mkdir torbrowser
+mkdir jondobrowser
 ```
 
 Place your final files in this folder
 ----------
 ```
-cp -R /var/src/tor-browser-build/alpha/unsigned/6.5n/ torbrowser/
+cp -R /var/src/tor-browser-build/alpha/unsigned/6.5n/ jondobrowser/
 ```
 Update Response
 ----------
