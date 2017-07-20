@@ -1,10 +1,10 @@
 ---
 releases_dir:  /var/www/torupdates/htdocs/jondobrowser
 download:
-    archive_url: https://jondobrowser.jondos.de/jondobrowser/
+    archive_url: /var/www/torupdates/htdocs/jondobrowser
     gpg_keyring: kaitian.gpg
-    bundles_url: https://jondobrowser.jondos.de/jondobrowser/
-    mars_url: https://jondobrowser.jondos.de/jondobrowser/
+    bundles_url: /var/www/torupdates/htdocs/jondobrowser
+    mars_url: /var/www/torupdates/htdocs/jondobrowser
 build_targets:
     linux32: Linux_x86-gcc3
     linux64: Linux_x86_64-gcc3
@@ -15,11 +15,11 @@ build_targets:
     osx32: Darwin_x86-gcc3
     osx64: Darwin_x86_64-gcc3
 channels:
-    alpha: 7.5
-    release: 7.5
-    #nightly: 7.5
+    alpha: 7.5a1
+    #release: 7.5a1
+    #nightly: 7.5a1
 versions:
-    7.5:
+    7.5a1:
         platformVersion: 52.2.0
         detailsURL: https://blog.torproject.org/blog/tor-browser-601-released
         incremental_from:
