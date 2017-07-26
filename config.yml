@@ -21,7 +21,7 @@ channels:
 versions:
     7.5a1:
         platformVersion: 52.2.0
-        detailsURL: https://blog.torproject.org/blog/tor-browser-601-released
+        detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/
         incremental_from:
           - 7.0a3
         migrate_archs:
