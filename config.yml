@@ -15,17 +15,15 @@ build_targets:
     osx32: Darwin_x86-gcc3
     osx64: Darwin_x86_64-gcc3
 channels:
-    alpha: 7.5a1
+    alpha: 7.5a1.1
     #release: 7.5a1
     #nightly: 7.5a1
 versions:
-    7.5a1:
+    7.5a1.1:
         platformVersion: 52.2.0
         detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/
         incremental_from:
           - 7.0a3
+          - 7.5a1
         migrate_archs:
           osx32: osx64
-        osx32:
-            minSupportedOSVersion: 10.8
-            detailsURL: https://blog.torproject.org/blog/end-life-plan-tor-browser-32-bit-macs#updating
