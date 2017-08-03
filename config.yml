@@ -15,15 +15,16 @@ build_targets:
     osx32: Darwin_x86-gcc3
     osx64: Darwin_x86_64-gcc3
 channels:
-    alpha: 7.5a1.1
+    alpha: 7.5a1.2
     #release: 7.5a1
     #nightly: 7.5a1
 versions:
-    7.5a1.1:
+    7.5a1.2:
         platformVersion: 52.2.0
         detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/
         incremental_from:
           - 7.0a3
           - 7.5a1
+          - 7.5a1.1
         migrate_archs:
           osx32: osx64
