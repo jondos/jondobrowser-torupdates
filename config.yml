@@ -23,7 +23,6 @@ versions:
         platformVersion: 52.2.0
         detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/alpha/
         incremental_from:
-          - 7.0a3
           - 7.5a1
           - 7.5a1.1
         migrate_archs:
