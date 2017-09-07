@@ -1,0 +1,72 @@
+#!/bin/bash
+
+function show_usage() {
+  echo "Creates symlinks from ."
+  echo "Usage:  ./create_release_links --from-version [RELEASE_VERSION] --to-directory [DESTINATION_DIR] --basedir [RELEASES_DIR]"
+  echo "Example: ./create_release_links --from-version 7.5.1.5 --to-directory current --basedir /var/www/htdocs/releases"
+  echo "All packages inside RELEASES_DIR/RELEASE_VERSION/ will be linked into RELEASES_DIR/DESTINATION_DIR."
+  echo "Options:"
+  echo "  --from-version"
+  echo "      set which version to copy"
+  echo "  --to-directory"
+  echo "      set destination directory where symlinks will be created"
+  echo "  --basedir"
+  echo "      set releases directory which contains RELEASE_VERSION and DESTINATION_DIR directories"
+  echo "  -h, --help        display this help"
+  exit 0
+}
+
+function show_error() {
+  echo "Not enough arguments. Invoke with --help for help."
+  exit 1
+}
+
+while test "${1:0:1}" = "-"; do
+  case $1 in
+    --from-version)
+      VERSION="$2"
+      shift; shift;;
+    --to-directory)
+      DEST_DIR="$2"
+      shift; shift;;
+    --basedir)
+	  BASE_DIR="$2"
+	  shift; shift;;
+    -h | --help)
+      show_usage;;
+    -*)
+      echo "Unknown option $1. Run with --help for help."
+      exit 1;;
+  esac
+done
+
+test -z $VERSION && {
+  show_error;
+}
+
+test -z $DEST_DIR && {
+  show_error;
+}
+
+test -z $BASE_DIR && {
+  show_error;
+}
+echo "VERSION=$VERSION"
+echo "DEST_DIR=$DEST_DIR"
+echo "BASE_DIR=$BASE_DIR"
+
+
+cd $BASE_DIR
+mkdir -p $DEST_DIR
+cd $DEST_DIR
+rm -r *
+cd $BASE_DIR/$VERSION
+for filename in *
+do
+	if [[ $filename == *".mar" ]] || [[ $filename == *".txt" ]] || [[ $filename == *".zip" ]]; then
+		echo "Skipping $filename"
+	else
+		newfilename=${filename%%-$VERSION*}${filename##*-$VERSION}
+		ln -s $BASE_DIR/$VERSION/$filename $BASE_DIR/$DEST_DIR/$newfilename	 
+	fi
+done
