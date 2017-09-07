@@ -332,6 +332,22 @@ sub write_htaccess {
             }
         }
         write_htdocs($channel, '.htaccess', $htaccess);
+        if($channel eq "product") {
+            write_htdocs("releases", '.htaccess', 
+                "RewriteEngine On\n"
+                . 'RewriteRule ^current/(.*)$' . " $version/" . '$1' . "\n");
+            write_htdocs("releases/$version", '.htaccess',
+                "RewriteEngine On\n"
+                . 'RewriteRule ^win-en-US https://jondobrowser.jondos.de/releases/current/jondobrowser-install-' . "$version" . "_en-US.exe [R=301,NC,L]\n"
+                . 'RewriteRule ^win-de https://jondobrowser.jondos.de/releases/current/jondobrowser-install-' . "$version" . "_de.exe [R=301,NC,L]\n"
+                . 'RewriteRule ^linux32-en-US https://jondobrowser.jondos.de/releases/current/jondobrowser-linux32-' . "$version" . "_en-US.tar.xz [R=301,NC,L]\n"
+                . 'RewriteRule ^linux64-en-US https://jondobrowser.jondos.de/releases/current/jondobrowser-linux64-' . "$version" . "_en-US.tar.xz [R=301,NC,L]\n"
+                . 'RewriteRule ^linux32-de https://jondobrowser.jondos.de/releases/current/jondobrowser-linux32-' . "$version" . "_de.tar.xz [R=301,NC,L]\n"
+                . 'RewriteRule ^linux64-de https://jondobrowser.jondos.de/releases/current/jondobrowser-linux64-' . "$version" . "_de.tar.xz [R=301,NC,L]\n"
+                . 'RewriteRule ^osx-en-US https://jondobrowser.jondos.de/releases/current/JonDoBrowser-' . "$version" . "-osx64_en-US.dmg [R=301,NC,L]\n"
+                . 'RewriteRule ^osx-de https://jondobrowser.jondos.de/releases/current/JonDoBrowser-' . "$version" . "-osx64_de.dmg [R=301,NC,L]\n"
+                );
+        }
     }
 }
 
