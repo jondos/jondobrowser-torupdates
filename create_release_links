@@ -3,7 +3,7 @@
 function show_usage() {
   echo "Creates symlinks from ."
   echo "Usage:  ./create_release_links --from-version [RELEASE_VERSION] --to-directory [DESTINATION_DIR] --basedir [RELEASES_DIR]"
-  echo "Example: ./create_release_links --from-version 7.5.1.5 --to-directory current --basedir /var/www/htdocs/releases"
+  echo "Example: ./create_release_links --from-version 7.5.1.5 --to-directory current --basedir /var/www/torupdates/htdocs/releases"
   echo "All packages inside RELEASES_DIR/RELEASE_VERSION/ will be linked into RELEASES_DIR/DESTINATION_DIR."
   echo "Options:"
   echo "  --from-version"
@@ -30,8 +30,8 @@ while test "${1:0:1}" = "-"; do
       DEST_DIR="$2"
       shift; shift;;
     --basedir)
-	  BASE_DIR="$2"
-	  shift; shift;;
+	    BASE_DIR="$2"
+	    shift; shift;;
     -h | --help)
       show_usage;;
     -*)

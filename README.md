@@ -61,10 +61,25 @@ Place your final files in this folder
 ```
 cp -R /var/src/tor-browser-build/alpha/unsigned/6.5n/ jondobrowser/
 ```
+Generate incremental update (.mar) files
+----------
+```
+$ ./gen_incrementals
+```
+Sign update (.mar) files
+----------
+```
+$ ./sign_mar --version 7.5.1.5 --certificate_dir /var/www/torupdates/certificate/ --basedir /var/www/torupdates/releases/
+```
 Update Response
 ----------
 ```
 $ ./update_responses
+```
+Create release symlink files
+----------
+```
+$ ./create_release_links --from-version 7.5.1.5 --to-directory current --basedir /var/www/torupdates/htdocs/releases
 ```
 
 URL Format

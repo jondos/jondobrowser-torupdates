@@ -1,0 +1,78 @@
+#!/bin/bash
+
+function show_usage() {
+  echo "Sign mar files."
+  echo "Usage:  ./sign_mar --version [RELEASE_VERSION] --certificate-dir [CERTIFICATE_DIR] --basedir [RELEASES_DIR]"
+  echo "Example: ./sign_mar --version 7.5.1.5 --certificate_dir /var/www/torupdates/certificate/ --basedir /var/www/torupdates/htdocs/releases/"
+  echo "All mar files RELEASES_DIR/RELEASE_VERSION/ will be signed and replaced."
+  echo "Options:"
+  echo "  --version"
+  echo "      set which version to sign"
+  echo "  --certificate_dir"
+  echo "      set certificate directory which contains NSS Certificate Database"
+  echo "  --basedir"
+  echo "      set releases directory which contains RELEASE_VERSION directory"
+  echo "  -h, --help        display this help"
+  exit 0
+}
+
+function show_error() {
+  echo "Not enough arguments. Invoke with --help for help."
+  exit 1
+}
+
+while test "${1:0:1}" = "-"; do
+  case $1 in
+    --version)
+      VERSION="$2"
+      shift; shift;;
+    --certificate_dir)
+      CERT_DIR="$2"
+      shift; shift;;
+    --basedir)
+	    BASE_DIR="$2"
+	    shift; shift;;
+    -h | --help)
+      show_usage;;
+    -*)
+      echo "Unknown option $1. Run with --help for help."
+      exit 1;;
+  esac
+done
+
+test -z $VERSION && {
+  show_error;
+}
+
+test -z $CERT_DIR && {
+  show_error;
+}
+
+test -z $BASE_DIR && {
+  show_error;
+}
+echo "VERSION=$VERSION"
+echo "CERT_DIR=$CERT_DIR"
+echo "BASE_DIR=$BASE_DIR"
+
+
+# extract fresh new mar-tools
+test -d mar-tools/mar-tools && rm -r mar-tools/mar-tools
+unzip mar-tools/mar-tools-linux64.zip -d mar-tools/
+BIN_DIR=`pwd`/mar-tools/mar-tools/
+echo "BIN_DIR=$BIN_DIR"
+test -z $LD_LIBRARY_PATH && LD_LIBRARY_PATH=$BIN_DIR || LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BIN_DIR
+export LD_LIBRARY_PATH
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
+# sign mar and replace unsigned mar with signed mar
+cd $BASE_DIR/$VERSION
+for filename in *
+do
+	if [[ $filename == *".mar" ]]; then
+    printf "\nSigning $filename\n"
+    $BIN_DIR/signmar -d $CERT_DIR/ -n "NSS Certificate DB:marsigner" -s $filename "$filename"_signed
+    #rm $filename
+    mv "$filename"_signed $filename
+	fi
+done
