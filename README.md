@@ -66,11 +66,6 @@ Generate incremental update (.mar) files
 ```
 $ ./gen_incrementals
 ```
-Sign update (.mar) files
-----------
-```
-$ ./sign_mar --version 7.5.1.5 --certificate_dir /var/www/torupdates/certificate/ --basedir /var/www/torupdates/releases/
-```
 Update Response
 ----------
 ```
