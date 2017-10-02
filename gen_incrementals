@@ -177,6 +177,11 @@ sub create_incremental_mar {
     my $mar_file = "jondobrowser-$os-${from_version}-${new_version}_$lang.incremental.mar";
     print "Starting $mar_file\n";
     my $mar_file_path = "$releases_dir/$new_version/$mar_file";
+    # skip already created files
+    if (-e $mar_file_path) {
+        print "    Skipping $mar_file_path\n";
+        return;
+    }
     my $download_url = "$config->{download}{mars_url}/$new_version";
     my $finished_file = sub {
         exit_error "Error creating $mar_file" unless $_[1] == 0;
