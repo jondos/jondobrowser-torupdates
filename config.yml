@@ -29,4 +29,3 @@ versions:
         platformVersion: 52.4.0
         detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/product/
         incremental_from:
-          - 7.5.5.51
