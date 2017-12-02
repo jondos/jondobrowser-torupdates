@@ -129,6 +129,8 @@ sub get_version_downloads {
             ($os, $lang) = ($1, $2);
         } elsif ($file =~ m/^jondobrowser-install-${version}_(.+).exe$/) {
             ($os, $lang) = ('win32', $1);
+        } elsif ($file =~ m/^jondobrowser-install-win64-${version}_(.+).exe$/) {
+            ($os, $lang) = ('win64', $1);
         } else {
             next;
         }
