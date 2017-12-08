@@ -68,8 +68,10 @@ cp -R /absolute/path/to/jondobrowser-build/product/unsigned/7.5.9.11/ releases/
 ```
 Update version information in config.yml
 ----------
+
 Please refer to this wiki page.
 https://github.com/jondos/jondobrowser-build/wiki/Releasing-a-new-product-build#update-download-server-configuration
+
 Update mar-tools
 ----------
 For linux x64 machine, copy mar-tools-linux64.zip from latest build directory to mar-tools directory.
@@ -83,8 +85,10 @@ $ ./gen_incrementals
 ```
 Sign mar files
 ----------
+
 Please refer to this wiki page.
 https://github.com/jondos/jondobrowser-misc/tree/master/codesign-jondo
+
 Update Response
 ----------
 ```
