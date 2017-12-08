@@ -18,7 +18,7 @@ build_targets:
     osx64: Darwin_x86_64-gcc3
 channels:
     alpha: 7.5a9.1.1
-    product: 7.5.5.54
+    product: 7.5.9.11
 versions:
     7.5a9.1.1:
         platformVersion: 52.5.1
@@ -28,7 +28,10 @@ versions:
           - 7.5a5.5.7
         migrate_archs:
           osx32: osx64
-    7.5.5.54:
-        platformVersion: 52.4.0
+    7.5.9.11:
+        platformVersion: 52.5.1
         detailsURL: https://jondobrowser.jondos.de/blog/jondobrowser-released/product/
         incremental_from:
+          - 7.5.5.54
+        migrate_archs:
+          osx32: osx64          
